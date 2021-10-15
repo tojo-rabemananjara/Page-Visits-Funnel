@@ -10,12 +10,17 @@ checkout = pd.read_csv('checkout.csv',
 purchase = pd.read_csv('purchase.csv',
                        parse_dates=[1])
 
-#dropping duplicate ids because they shouldn't be counted
-visits = visits.drop_duplicates(subset='user_id')
-cart = cart.drop_duplicates(subset='user_id')
-checkout = checkout.drop_duplicates(subset='user_id')
-purchase = purchase.drop_duplicates(subset='user_id')
+#dropping duplicate ids because they shouldn't be counted in percent losses
+visits = visits.drop_duplicates(subset='user_id').reset_index(drop=True)
+cart = cart.drop_duplicates(subset='user_id').reset_index(drop=True)
+checkout = checkout.drop_duplicates(subset='user_id').reset_index(drop=True)
+purchase = purchase.drop_duplicates(subset='user_id').reset_index(drop=True)
+print(visits)
 
+#NOTE!
+#multiple users with the same ID appear more than once in the 
+# cart list and confirmed this is due to multiple users visiting
+# the cart page more than once within the same visit.
 
 #displaying dataframe heads
 # print(visits.head())
@@ -57,7 +62,7 @@ print(all_data.time_to_purchase.mean())
 #Looking at these percent losses, most attention needs to brought tco the cart-checkout chain as
 # it has the highest percent loss (74.68)
 
-#extra testing to check that the 2 things agree
+#extra testing to check that the 2 methods of percent loss calculations (here and above) agree
 visit_cart = all_data[(~all_data.visit_time.isnull()) & (all_data.cart_time.isnull())]
 print(len(visit_cart)/float(len(visits))*100)
 cart_checkout = all_data[(~all_data.cart_time.isnull()) & (all_data.checkout_time.isnull())]
