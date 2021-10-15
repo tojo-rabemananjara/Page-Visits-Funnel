@@ -59,8 +59,8 @@ all_data['time_to_purchase'] = \
 #show mean time to purchase an item
 print(all_data.time_to_purchase.mean())
 
-#Looking at these percent losses, most attention needs to brought tco the cart-checkout chain as
-# it has the highest percent loss (74.68)
+#Looking at these percent losses, most attention needs to brought tco the visit-cart chain since
+# it has the highest percent loss (82.56%) out of the 3 parts of the chain.
 
 #extra testing to check that the 2 methods of percent loss calculations (here and above) agree
 visit_cart = all_data[(~all_data.visit_time.isnull()) & (all_data.cart_time.isnull())]
