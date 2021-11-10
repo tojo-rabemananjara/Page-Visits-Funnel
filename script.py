@@ -15,7 +15,7 @@ visits = visits.drop_duplicates(subset='user_id').reset_index(drop=True)
 cart = cart.drop_duplicates(subset='user_id').reset_index(drop=True)
 checkout = checkout.drop_duplicates(subset='user_id').reset_index(drop=True)
 purchase = purchase.drop_duplicates(subset='user_id').reset_index(drop=True)
-print(visits)
+# print(visits)
 
 #NOTE!
 #multiple users with the same ID appear more than once in the 
@@ -28,10 +28,10 @@ print(visits)
 # print(checkout.head())
 # print(purchase.head())
 
-print(visits.describe())
-print(cart.describe())
-print(checkout.describe())
-print(purchase.describe())
+# print(visits.describe())
+# print(cart.describe())
+# print(checkout.describe())
+# print(purchase.describe())
 
 #show percent loss from visit to cart
 visit_cart = pd.merge(visits, cart, how='left')
@@ -57,15 +57,16 @@ all_data['time_to_purchase'] = \
 
 #print(all_data.info())
 #show mean time to purchase an item
-print(all_data.time_to_purchase.mean())
+mean_time_to_purchase = all_data.time_to_purchase.mean()
+print('mean time to purchase: {}'.format(mean_time_to_purchase))
 
 #Looking at these percent losses, most attention needs to brought tco the visit-cart chain since
 # it has the highest percent loss (82.56%) out of the 3 parts of the chain.
 
 #extra testing to check that the 2 methods of percent loss calculations (here and above) agree
-visit_cart = all_data[(~all_data.visit_time.isnull()) & (all_data.cart_time.isnull())]
-print(len(visit_cart)/float(len(visits))*100)
-cart_checkout = all_data[(~all_data.cart_time.isnull()) & (all_data.checkout_time.isnull())]
-print(len(cart_checkout)/float(len(cart))*100)
-checkout_purchase = all_data[(~all_data.checkout_time.isnull()) & (all_data.purchase_time.isnull())]
-print(len(checkout_purchase)/float(len(checkout))*100)
+# visit_cart = all_data[(~all_data.visit_time.isnull()) & (all_data.cart_time.isnull())]
+# print(len(visit_cart)/float(len(visits))*100)
+# cart_checkout = all_data[(~all_data.cart_time.isnull()) & (all_data.checkout_time.isnull())]
+# print(len(cart_checkout)/float(len(cart))*100)
+# checkout_purchase = all_data[(~all_data.checkout_time.isnull()) & (all_data.purchase_time.isnull())]
+# print(len(checkout_purchase)/float(len(checkout))*100)
