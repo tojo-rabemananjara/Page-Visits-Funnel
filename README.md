@@ -1,11 +1,6 @@
 # Page Visists Funnel
 ## Introduction
-<<<<<<< HEAD
-The goal of this project was to practice using the pandas python module to read multiple csv files and use left merging to discover percent losses between any 2 consecutive points of the overall transactioin chain - i.e funneling.
-
-=======
 The goal of this project was to practice using the pandas python module to read multiple csv files and use left merging to discover percent losses between any 2 consecutive points of the overall transaction chain.
->>>>>>> 8be4ef20c0a98e7b7c47cc0e9ad6a1380ecbb977
 ## Technology
 
 * Python 3.8.11
